@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "179941979322",
+    "firebase_url": "https://otomatdeneme-c536e.firebaseio.com",
+    "project_id": "otomatdeneme-c536e",
+    "storage_bucket": "otomatdeneme-c536e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:179941979322:android:ebb69fa3ef06c9f193be83",
+        "android_client_info": {
+          "package_name": "kdrgrgn.flutter_otomat_deneme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "179941979322-6qtd5a838hdisqf18vv1ebugmd9lbr2e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kdrgrgn.flutter_otomat_deneme",
+            "certificate_hash": "b03cb6c6e30f9a874b1e3d0fe0d4b71d0cbcad84"
+          }
+        },
+        {
+          "client_id": "179941979322-v374ge9fn20udehqqcnft5op7r1e145b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCHXcXMcMXnsPMGvrVMR5BLCONrQymvLw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "179941979322-v374ge9fn20udehqqcnft5op7r1e145b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
