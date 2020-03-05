@@ -38,6 +38,9 @@ class _KayitSayfasiState extends State<KayitSayfasi> {
 
   SignInOutFonk _fonk = SignInOutFonk();
 
+
+
+
   @override
   Widget build(BuildContext context) {
     sehirIlce = ilceListele || sehirListele;
@@ -100,8 +103,8 @@ class _KayitSayfasiState extends State<KayitSayfasi> {
                 ),
                 TextFormField(
                   onSaved: (girilenTelNo) {
-
-                      _telNo.add(girilenTelNo);
+_telNo.insert(0, girilenTelNo);
+                    //  _telNo[0]=girilenTelNo;
                   },
                   keyboardType: TextInputType.phone,
                   decoration: InputDecoration(
@@ -213,8 +216,8 @@ class _KayitSayfasiState extends State<KayitSayfasi> {
                         ),
                         TextFormField(
                           onSaved: (deger) {
-
-                              _adresKisaIsim.add(deger);
+_adresKisaIsim.insert(0, deger);
+                              //_adresKisaIsim[0]=deger;
 
                           },
                           decoration: InputDecoration(
@@ -412,22 +415,32 @@ class _KayitSayfasiState extends State<KayitSayfasi> {
   Future<void> _kayitOl(BuildContext context) async {
     _formKey.currentState.save();
 
-    User _user = await _fonk.kayitOl(
-        context: context,
-        isim: _isim,
-        email: _email,
-        sifre: _sifre,
-        adresKisaIsim: _adresKisaIsim,
-        adresMap:adresMapOlustur(),
-        sehir: _secilenSehir,
-        ilce: _secilenIlce,
-        mahalle: _mahalle,
-        adresDetay: _adresDetay,
-        plaka: "${_secilen_ilPlaka.toString()}-$_secilenPlakaOrta-$_secilenPlakaSon",
-        telNo: _telNo);
+    debugPrint("kisa isim= ${_adresKisaIsim.toString()} ,  tel no = ${_telNo
+        .toString()}");
+    try {
+     
 
-    if (_user != null) {
-      Navigator.of(context).pop();
+      User _user = await _fonk.kayitOl(
+          context: context,
+          isim: _isim,
+          email: _email,
+          sifre: _sifre,
+          adresKisaIsim: _adresKisaIsim,
+          adresMap: adresMapOlustur(),
+          sehir: _secilenSehir,
+          ilce: _secilenIlce,
+          mahalle: _mahalle,
+          adresDetay: _adresDetay,
+          plaka: "${_secilen_ilPlaka
+              .toString()}-$_secilenPlakaOrta-$_secilenPlakaSon",
+          telNo: _telNo);
+
+      if (_user != null) {
+        Navigator.of(context).pop();
+      }
+    }
+    catch(e){
+      debugPrint("Hata var kirve = $e");
     }
   }
 
