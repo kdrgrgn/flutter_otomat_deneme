@@ -19,7 +19,8 @@ class _AnaSayfaState extends State<AnaSayfa> {
     return _userModel.user!=null?Padding(
       padding: const EdgeInsets.all(0.0),
       child: Scaffold(
-          body: CustomScrollView(
+          body:
+          CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
             title: Text("Ana Sayfa"),
@@ -119,7 +120,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text(" " + "${_userModel.user.adresKisaIsim[0]}"),
+                        Text(_userModel.user.adresKisaIsim.isEmpty?"Adres yok":" ${_userModel.user.adresKisaIsim[0]}"),
                         Icon(Icons.arrow_drop_down)
                       ],
                     ),

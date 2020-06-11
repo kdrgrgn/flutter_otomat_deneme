@@ -103,7 +103,6 @@ backgroundColor: Colors.white,
                   trailing: Icon(Icons.arrow_forward_ios ,color: Colors.black,),
                   title: Text("Profilim",style: yaziStil,),
                   onTap: (){
-                    cikisYap(context);
 
                   },
                 ),
@@ -131,6 +130,8 @@ backgroundColor: Colors.white,
             height: 50,
             child: Container(color: Colors.black12,),
           ),
+
+
 
 
           Container(

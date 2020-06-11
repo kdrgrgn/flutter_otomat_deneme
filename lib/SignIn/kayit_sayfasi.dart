@@ -25,7 +25,7 @@ class _KayitSayfasiState extends State<KayitSayfasi> {
   bool sehirIlce; //hem secilen sehir hem de secilen ilce nin veya larina bakar.Stack isleminde ona gore sitraya sokar
 
   String _isim;
-  List _telNo;
+  List _telNo=[];
   String _secilenSehir = "Lutfen Sehir Seciniz";
   String _secilenIlce = "Lutfen ilce Seciniz";
   String _secilenPlakaOrta;
@@ -34,7 +34,7 @@ class _KayitSayfasiState extends State<KayitSayfasi> {
   String _sifre;
   String _mahalle;
   String _adresDetay;
-  List _adresKisaIsim;
+  List _adresKisaIsim=[];
 
   SignInOutFonk _fonk = SignInOutFonk();
 
@@ -86,6 +86,7 @@ class _KayitSayfasiState extends State<KayitSayfasi> {
                   height: 10,
                 ),
                 TextFormField(
+
                   onSaved: (String deger) {
                       _isim = deger;
                   },
@@ -103,7 +104,7 @@ class _KayitSayfasiState extends State<KayitSayfasi> {
                 ),
                 TextFormField(
                   onSaved: (girilenTelNo) {
-_telNo.insert(0, girilenTelNo);
+_telNo.add(girilenTelNo);
                     //  _telNo[0]=girilenTelNo;
                   },
                   keyboardType: TextInputType.phone,
@@ -216,7 +217,7 @@ _telNo.insert(0, girilenTelNo);
                         ),
                         TextFormField(
                           onSaved: (deger) {
-_adresKisaIsim.insert(0, deger);
+_adresKisaIsim.add(deger);
                               //_adresKisaIsim[0]=deger;
 
                           },
@@ -408,7 +409,7 @@ _adresKisaIsim.insert(0, deger);
     );
   }
   Map<String ,String> adresMapOlustur(){
-    return {"$_adresKisaIsim" : "$_adresDetay , $_mahalle , $_secilenIlce/$_secilenSehir, \n ${_telNo[0].toString()}"};
+    return {"${_adresKisaIsim[0]}" : "$_adresDetay , $_mahalle , $_secilenIlce/$_secilenSehir, \n ${_telNo[0].toString()}"};
 
   }
 
@@ -420,7 +421,7 @@ _adresKisaIsim.insert(0, deger);
     try {
      
 
-      User _user = await _fonk.kayitOl(
+        User _user = await _fonk.kayitOl(
           context: context,
           isim: _isim,
           email: _email,

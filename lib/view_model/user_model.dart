@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_otomat_deneme/Repository/Firma_repository.dart';
 import 'package:flutter_otomat_deneme/Repository/User_repository.dart';
 import 'package:flutter_otomat_deneme/locator.dart';
+import 'package:flutter_otomat_deneme/model/firma.dart';
 import 'package:flutter_otomat_deneme/model/user.dart';
 import 'package:flutter_otomat_deneme/services/auth_base.dart';
 
 enum ViewState { Idle, Busy }
 
 class UserModel with ChangeNotifier implements AuthBase {
+
   ViewState _state = ViewState.Idle;
   UserRepository _userRepository = locator<UserRepository>();
+  FirmaRepository _firmaRepository=locator<FirmaRepository>();
   User _user;
+
+
+
 
   User get user => _user;
 
@@ -124,30 +131,47 @@ class UserModel with ChangeNotifier implements AuthBase {
     }
   }
 
-/*  List ilceGetir(List sehir, List ilceler,int secilenPlaka){
-    try{
-      state=ViewState.Busy;
-      for(var i=0;i<81;i++){
-        // ignore: missing_return
-        if(sehir[i]['plaka']==secilenPlaka){
-          ilceler= sehir[i]['ilceleri'];
+  // ignore: non_constant_identifier_names, missing_return
+  Future<bool> adresEkle({
+    @required  User user
 
-          debugPrint("$ilceler");
+    /*   @required List telNo,
+    @required Map adresMap,
+    @required List adresKisaIsim,*/
+  }) async {
+    try {
+      state = ViewState.Busy;
+     bool sonuc = await _userRepository.adresEkle(
+        user:user);
+         /* adresKisaIsim: adresKisaIsim, adresMap: adresMap, telNo: telNo*/
 
-        }
-        else{
-          continue;
-        }
-      }
-      return ilceler;
+      return sonuc;
+    } catch (e) {
+      debugPrint(
+          "View model kullanici olusutrrmada  da hata var" + e.toString());
+      return false;
+    } finally {
+      state = ViewState.Idle;
+    }
+  }
+
+
+  Future<List<Firma>> readFirma() async {
+    try {
+      state = ViewState.Busy;
+
+      return await _firmaRepository.readFirma();
     }
     catch(e){
-      debugPrint("View model ilceGetir hata var"+e.toString());
+      print("usermodel readfirma da hata var= $e");
       return null;
     }
     finally{
       state=ViewState.Idle;
     }
-  }*/
+  }
+
+
+
 
 }

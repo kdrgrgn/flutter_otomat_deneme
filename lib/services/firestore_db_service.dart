@@ -4,17 +4,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_otomat_deneme/model/user.dart';
 import 'package:flutter_otomat_deneme/services/database_base.dart';
 
-class FirestroeDbService implements DbBase{
+class FirestroeDbService implements DbBase {
 final Firestore _firestoreDB=Firestore.instance;
 
   @override
   // ignore: non_constant_identifier_names
 
-  Future<User> ReadUser(String userID) async{
+  Future<User> readUser(String userID) async{
     try {
       DocumentSnapshot _okunanUser = await _firestoreDB.document(
           "Users/$userID").get();
-
+//_okunanUser.data[]
       Map<String, dynamic> _okunanUserBilgileriMap = _okunanUser.data;
 
       User _okunanUserBilgileriNesne = User.fromMap(_okunanUserBilgileriMap);
@@ -42,8 +42,28 @@ final Firestore _firestoreDB=Firestore.instance;
     User _okunanUserBilgileriNesne= User.fromMap(_okunanUserBilgileriMap);
 
     print("kaydeduilen User nesnesi= "+ _okunanUserBilgileriNesne.toString());
+
     return true;
 
+
+
+  }
+
+  Future update(User user) async{
+    try {
+      await _firestoreDB.collection("Users").document(user.userID).updateData(
+          user.toMap());
+      DocumentSnapshot _okunanUser = await _firestoreDB.document(
+          "Users/${user.userID}").get();
+      Map _okunanUserBilgileriMap = _okunanUser.data;
+      User _okunanUserBilgileriNesne = User.fromMap(_okunanUserBilgileriMap);
+      print(
+          "guncellenen User nesnesi= " + _okunanUserBilgileriNesne.toString());
+      return true;
+    }
+    catch(e){
+      debugPrint("firestroe db service hata var = $e");
+    }
 
 
   }

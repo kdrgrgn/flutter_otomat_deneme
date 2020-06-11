@@ -4,6 +4,9 @@ import 'package:flutter_otomat_deneme/view_model/user_model.dart';
 import 'package:provider/provider.dart';
 
 class SignInOutFonk {
+
+
+
   Future<User> googleIleGirisYap({@required BuildContext context}) async {
     final _userModel = Provider.of<UserModel>(context);
 

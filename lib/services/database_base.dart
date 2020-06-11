@@ -6,7 +6,8 @@ abstract class DbBase{
   // ignore: non_constant_identifier_names
   Future<bool> SaveUser(User user);
   // ignore: non_constant_identifier_names
-  Future<User> ReadUser(String userID);
+  Future<User> readUser(String userID);
+
 
 
 }

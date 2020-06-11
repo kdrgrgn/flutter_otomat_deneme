@@ -90,6 +90,7 @@ class FirebaseAuthService implements AuthBase {
   // ignore: missing_return
   Future<User> signInWithEmailAndPassword(String email, String sifre) async {
     try {
+
       AuthResult sonuc = await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: sifre);
       return _userFromFirebase(user: sonuc.user);
@@ -114,11 +115,11 @@ class FirebaseAuthService implements AuthBase {
                 accessToken: _googleAuth.accessToken));
         FirebaseUser _firebaseUser = sonuc.user;
 
-        User _user = await _firestoreDbService.ReadUser(_firebaseUser.uid);
+        User _user = await _firestoreDbService.readUser(_firebaseUser.uid);
         if (_user == null) {
           _user = _userFromFirebase(user: _firebaseUser);
-          bool _sonuc = await _firestoreDbService.SaveUser(_user);
-          _user = await _firestoreDbService.ReadUser(_user.userID);
+           await _firestoreDbService.SaveUser(_user);
+          _user = await _firestoreDbService.readUser(_user.userID);
           return _user;
         } else {
           return _user;

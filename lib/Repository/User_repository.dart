@@ -37,7 +37,7 @@ class UserRepository implements AuthBase {
         telNo: telNo);
     bool _sonuc = await _firestoreDbService.SaveUser(_user);
     if (_sonuc) {
-      return await _firestoreDbService.ReadUser(_user.userID);
+      return await _firestoreDbService.readUser(_user.userID);
     } else {
       return null;
     }
@@ -46,7 +46,7 @@ class UserRepository implements AuthBase {
   @override
   Future<User> currentUser() async {
     User _user = await _firebaseAuthService.currentUser();
-    return await _firestoreDbService.ReadUser(_user.userID);
+    return await _firestoreDbService.readUser(_user.userID);
   }
 
   @override
@@ -54,7 +54,7 @@ class UserRepository implements AuthBase {
   Future<User> signInWithEmailAndPassword(String email, String sifre) async {
     User _user =
         await _firebaseAuthService.signInWithEmailAndPassword(email, sifre);
-    return await _firestoreDbService.ReadUser(_user.userID);
+    return await _firestoreDbService.readUser(_user.userID);
   }
 
   @override
@@ -75,4 +75,22 @@ class UserRepository implements AuthBase {
   Future<bool> signOut() async {
     return await _firebaseAuthService.signOut();
   }
+  // ignore: non_constant_identifier_names, missing_return
+  Future<bool> adresEkle({
+    @required  User user
+
+/*    @required List telNo,
+    @required Map adresMap,
+    @required List adresKisaIsim,*/
+  }) async {
+
+    bool sonuc= await _firestoreDbService.update(user);
+    if(sonuc) {
+      return sonuc;
+    }
+    else{
+      return false;
+    }
+  }
+
 }

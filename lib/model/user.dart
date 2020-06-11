@@ -12,15 +12,15 @@ class User {
   List telNo;
   String plaka;
   Map adresMap;
-  Map<String, String> bosMap = {' ': ' '};
+  Map<String, String> bosMap={};
 
   String sehir;
   List adresKisaIsim;
   String ilce;
   String mahalle;
   String adresDetay;
-  List bosadresKisaIsim=[""];
-  List bosTelNo=[""];
+  List bosadresKisaIsim=[];
+  List bosTelNo=[];
 
 
   User({
